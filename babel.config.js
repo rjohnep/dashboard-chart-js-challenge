@@ -6,8 +6,7 @@ module.exports = {
         modules: false
       }
     ],
-    '@babel/preset-react',
-    '@babel/typescript'
+    '@babel/preset-react'
   ],
   plugins: [
     'styled-components',
@@ -18,16 +17,8 @@ module.exports = {
     production: {
       only: ['app'],
       plugins: [
-        'lodash',
-        'transform-react-remove-prop-types',
         '@babel/plugin-transform-react-inline-elements',
         '@babel/plugin-transform-react-constant-elements'
-      ]
-    },
-    test: {
-      plugins: [
-        '@babel/plugin-transform-modules-commonjs',
-        'dynamic-import-node'
       ]
     }
   }

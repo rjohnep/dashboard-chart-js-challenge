@@ -1,14 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-
-const prettierOptions = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '.prettierrc'), 'utf8')
-);
-
 module.exports = {
   parser: 'babel-eslint',
-  extends: ['airbnb-typescript', 'prettier', 'prettier/react'],
-  plugins: ['prettier', '@typescript-eslint', 'react', 'react-hooks'],
+  extends: [
+    'airbnb',
+    'plugin:react/recommended'
+  ],
+  plugins: ['react', 'react-hooks'],
   env: {
     jest: true,
     browser: true,
@@ -22,18 +18,13 @@ module.exports = {
       jsx: true
     }
   },
+  settings: {
+    react: {
+      version: require('./package.json').dependencies.react
+    }
+  },
   rules: {
-    'prettier/prettier': ['error', prettierOptions],
-    'arrow-body-style': [2, 'as-needed'],
-    'class-methods-use-this': 0,
-    'import/imports-first': 0,
-    'import/newline-after-import': 0,
-    'import/no-dynamic-require': 0,
-    'import/no-extraneous-dependencies': 0,
-    'import/no-named-as-default': 0,
-    'import/no-unresolved': 2,
-    'import/no-webpack-loader-syntax': 0,
-    'import/prefer-default-export': 0,
+    'max-len': ['error', { code: 100 }],
     indent: [
       2,
       2,
@@ -41,32 +32,30 @@ module.exports = {
         SwitchCase: 1
       }
     ],
-    'max-len': 0,
-    'newline-per-chained-call': 0,
-    'no-confusing-arrow': 0,
-    'no-console': 1,
+    'comma-dangle': ['error', 'never'],
+    'object-curly-newline': ['error', {
+      'ObjectExpression': 'always',
+      'ObjectPattern': { 'multiline': true },
+      // 'ImportDeclaration': 'never',
+      'ExportDeclaration': { 'multiline': true, 'minProperties': 3 }
+    }],
     'no-unused-vars': 2,
-    'no-use-before-define': 0,
-    'prefer-template': 2,
-    'react/destructuring-assignment': 0,
-    'react-hooks/rules-of-hooks': 'error',
-    'react/jsx-closing-tag-location': 0,
-    'react/forbid-prop-types': 0,
-    'react/jsx-first-prop-new-line': [2, 'multiline'],
-    'react/jsx-filename-extension': 0,
-    'react/jsx-no-target-blank': 0,
+    'arrow-body-style': [2, 'as-needed'],
+    'arrow-parens': ['error', 'always'],
+    'jsx-a11y/label-has-associated-control': 0,
+    // 'import/no-named-as-default': 0,
+    'import/no-unresolved': 0,
+    'import/prefer-default-export': 0,
+    // 'import/extensions': [
+    //   'error', 'never',
+    //   { 'svg': 'always', 'json': 'always', 'csv': 'always' }
+    // ],
+    // 'react/jsx-closing-bracket-location': [1, 'line-aligned'],
     'react/jsx-uses-vars': 2,
-    'react/require-default-props': 0,
-    'react/require-extension': 0,
-    'react/self-closing-comp': 0,
-    'react/sort-comp': 0
-  },
-  settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx']
-    },
-    'import/resolver': {
-      typescript: {}
-    }
+    'react/jsx-first-prop-new-line': [2, 'multiline'],
+    'react/sort-comp': 0,
+    'react/destructuring-assignment': 0,
+    'react/jsx-fragments': [2, 'element'],
+    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }]
   }
 };

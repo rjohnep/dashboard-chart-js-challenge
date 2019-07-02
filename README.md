@@ -1,5 +1,2 @@
-yarn
+# Dashboard Charts code challenge
 
-yarn start
-
-Based on react-boilerplate
